@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
-import java.util.Random;
 
 public class Music extends Service {
     private MediaPlayer mediaPlayer;
@@ -22,6 +21,7 @@ public class Music extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         mediaPlayer = MediaPlayer.create(this, Settings.System.DEFAULT_ALARM_ALERT_URI);
+
         mediaPlayer.start();
         return START_NOT_STICKY;
     }
@@ -29,6 +29,16 @@ public class Music extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mediaPlayer.stop();
+        new rndmNumGen();
+        int sum = rndmNumGen.sum;
+
+        int var = 0;//textfeld wert muss hier ausgelesen werden
+
+        if(sum == var) {
+            mediaPlayer.stop();
+        }else{
+            new rndmNumGen();
+            sum = rndmNumGen.sum;
+        }
     }
 }
