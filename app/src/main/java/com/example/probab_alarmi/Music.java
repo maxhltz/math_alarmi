@@ -5,8 +5,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.provider.Settings;
-import android.widget.TextView;
-
+import android.widget.EditText;
 import androidx.annotation.Nullable;
 
 
@@ -32,13 +31,18 @@ public class Music extends Service {
         new rndmNumGen();
         int sum = rndmNumGen.sum;
 
-        int var = 0;//textfeld wert muss hier ausgelesen werden
+        EditText sol = null;
+        EditText editText = sol.findViewById(R.id.solution);
+        int solution = Integer.parseInt(String.valueOf(editText));
 
-        if(sum == var) {
+        if(sum == solution) {
             mediaPlayer.stop();
         }else{
             new rndmNumGen();
             sum = rndmNumGen.sum;
+            editText = sol.findViewById(R.id.solution);
+            solution = Integer.parseInt(String.valueOf(editText));
+
         }
     }
 }
